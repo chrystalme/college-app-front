@@ -1,4 +1,21 @@
-function Login() {
+import { useState } from "react"
+const Login = () => {
+const [login, setLogin] = useState({
+  email: '', password: ''
+});
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const {name, value} = e.target;
+  setLogin({
+    ...login,
+    [name]: value
+  })
+}
+
+const handleSubmit = (e: any) => {
+  e.preventDefault();
+  console.log(login)
+}
 
     return (
         <section className="h-50">
@@ -8,10 +25,12 @@ function Login() {
                     <div
                         className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"></div>
                     <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-6">
                                 <input
                                     type="text"
+                                    onChange={handleChange}
+                                    name="email"
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput2"
                                     placeholder="Email address"/>
@@ -19,6 +38,8 @@ function Login() {
 
                             <div className="mb-6">
                                 <input
+                                name="password"
+                                onChange={handleChange}
                                     type="password"
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput2"
